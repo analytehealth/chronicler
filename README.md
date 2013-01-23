@@ -22,6 +22,10 @@ Installation
 
 To install via pip:
 
+    pip install chronicler
+
+Or to grab the latest from source:
+
     pip install -e git+git://github.com/analytehealth/chronicler.git#egg=chronicler
 
 To install manually, clone the repository and run:
