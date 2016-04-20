@@ -13,7 +13,7 @@ install_requires = [
 
 setup(
     name='chronicler',
-    version='0.1',
+    version='0.2',
     author='Analyte Health',
     author_email='open-source@analytehealth.com',
     url='http://github.com/analytehealth/chronicler',
