@@ -3,7 +3,7 @@ import json
 
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.fields import GenericForeignKey
 from django import dispatch
 
 from .utils import serialize_data, data_has_changes
@@ -16,7 +16,7 @@ class AuditItem(models.Model):
 
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
-    content_object = generic.GenericForeignKey('content_type', 'object_id')
+    content_object = GenericForeignKey('content_type', 'object_id')
     serialized_data = models.TextField(null=True, blank=True)
     user = models.ForeignKey('auth.User', null=True)
     created = models.DateTimeField(auto_now_add=True)
