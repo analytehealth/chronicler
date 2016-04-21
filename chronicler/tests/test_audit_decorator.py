@@ -10,7 +10,6 @@ from chronicler.decorators import audits
 from chronicler.tests import TestCase
 from chronicler.tests.models import Person, Group
 
-
 @audits(Person, ['group_set'], 'pk', 'person_pk', 'POST')
 def fake_view_post(request):
     pass
@@ -35,7 +34,7 @@ class TestCreateAuditEntry(TestCase):
 
     def setUp(self):
         super(TestCreateAuditEntry, self).setUp()
-        self.user = User.objects.create(username='analyte')
+        self.user, _ = User.objects.get_or_create(username='analyte')
         self.content_type = ContentType.objects.get_for_model(Person)
         self.person = Person.objects.create(name='Tester')
 

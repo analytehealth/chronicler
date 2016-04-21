@@ -14,7 +14,7 @@ class TestCreateAudit(TestCase):
         create an AuditItem
         '''
         person = Person.objects.create(name='Tester')
-        user = User.objects.create(username='analyte')
+        user, _ = User.objects.get_or_create(username='analyte')
         content_type = ContentType.objects.get_for_model(Person)
         group = Group.objects.create(name='group_one')
         group_two = Group.objects.create(name='group_two')
@@ -56,7 +56,7 @@ class TestCreateAudit(TestCase):
             ['membership_set'],
             user
         )
-        audit = AuditItem.objects.latest()
+        audit = AuditItem.objects.order_by('-pk')[0]
         self.assertEqual(
             audit.audit_data['membership_set'][1]['gold_member'],
             True
