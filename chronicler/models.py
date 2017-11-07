@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django import dispatch
+from django.conf import settings
 
 from .utils import serialize_data, data_has_changes
 
@@ -18,7 +19,7 @@ class AuditItem(models.Model):
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
     serialized_data = models.TextField(null=True, blank=True)
-    user = models.ForeignKey('auth.User', null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     @property
